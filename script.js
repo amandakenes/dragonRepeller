@@ -147,16 +147,22 @@ function sellWeapon() {
 }
 
 function fightSlime() {
-    fighting = 0;
-
+  fighting = 0; //index of slime in the monsters array
+  goFight();
 }
 
-function fightBeast() {}
+function fightBeast() {
+  fighting = 1;
+  goFight();
+}
 
 function fightDragon() {
-  console.log("Fighting dragon.");
+  fighting = 2;
+  goFight();
 }
 
-function goFight() {
+function goFight() {}
 
-}
+function attack() {}
+
+function dodge() {}
