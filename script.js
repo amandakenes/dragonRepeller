@@ -101,13 +101,27 @@ function buyHealth() {
 }
 
 function buyWeapon() {
+  if (currentWeapon < weapons.length - 1) {
     if (gold >= 30) {
-        gold -= 30;
-        currentWeapon++;
-        goldText.innerHTML = gold;
-        text.innerHTML = "You now have a new weapon."
+      gold -= 30;
+      currentWeapon++;
+      goldText.innerHTML = gold;
+      let newWeapon = weapons[currentWeapon].name;
+      text.innerHTML = `You now have a ${newWeapon}.`;
+      inventory.push(newWeapon);
+      console.log(inventory);
+      text.innerHTML += ` In your inventory you have: ${inventory}.`;
+    } else {
+      text.innerHTML = "You do not have enough money to buy a weapon.";
     }
+  } else {
+    text.innerHTML = "You already have the most powerful weapon!";
+    button2.innerHTML = "Sell weapon for 15 gold";
+    button2.onclick = sellWeapon;
+  }
 }
+
+function sellWeapon() {}
 
 function fightSlime() {}
 
