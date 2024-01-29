@@ -56,6 +56,23 @@ const locations = [
     "button functions": [fightSlime, fightBeast, goTown],
   },
 ];
+const monsters = [
+  {
+    name: "slime",
+    level: 2,
+    health: 15,
+  },
+  {
+    name: "fanged beast",
+    level: 8,
+    health: 60,
+  },
+  {
+    name: "dragon",
+    level: 20,
+    health: 300,
+  },
+];
 
 // botões de inicialização
 button1.onclick = goStore;
@@ -82,10 +99,6 @@ function goTown() {
 
 function goCave() {
   update(locations[2]);
-}
-
-function fightDragon() {
-  console.log("Fighting dragon.");
 }
 
 function buyHealth() {
@@ -121,8 +134,29 @@ function buyWeapon() {
   }
 }
 
-function sellWeapon() {}
+function sellWeapon() {
+  if (inventory.length > 1) {
+    gold += 15;
+    goldText.innerHTML = gold;
+    let currentWeapon = inventory.shift();
+    text.innerHTML = `You sold a ${currentWeapon}. 
+    In your inventory you have a: ${inventory}.`;
+  } else {
+    text.innerHTML = "You can't sell your only weapon!";
+  }
+}
 
-function fightSlime() {}
+function fightSlime() {
+    fighting = 0;
+
+}
 
 function fightBeast() {}
+
+function fightDragon() {
+  console.log("Fighting dragon.");
+}
+
+function goFight() {
+
+}
