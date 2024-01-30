@@ -2,7 +2,7 @@ This is a RPG Game done following freeCodeCamp's guide and instructions.
 
 Here I show my knowledge of HTML and CSS but mainly JavaScript, which is a language that I've been learning
 and practcing with small projects for a couple of months now. I still have a long way to go on it but I'm also feeling like I'm starting to get the hang of it.
-While doing this project, I could learn more about JavaScript's functions, arrays, operators, variables, if...else statements, loops and etc and I was able to practice my existential skills on this language.
+While doing this project, I could learn more about JavaScript's functions, arrays, operators, variables, if...else statements, loops and etc and I was able to practice my existential skills on this programming language.
 
 I inivite you to watch my learning process on here with JavaScript but sooner expanded to more languages and more complex projects.
 
