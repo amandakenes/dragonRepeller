@@ -202,7 +202,10 @@ function attack() {
   text.innerHTML = "The " + monsters[fighting].name + " attacks.";
   text.innerHTML +=
     " You attack it with your " + weapons[currentWeapon].name + ".";
-  health -= monsters[fighting].level;
+    /* This line below sets health equal to health minus the return value
+    of the getMonsterAttackValue function, 
+    and passes the level of the monster as an argument. */
+    health -= getMonsterAttackValue(monsters[fighting].level); 
   monsterHealth -=
     weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
   healthText.innerHTML = health;
