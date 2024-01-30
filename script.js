@@ -202,12 +202,16 @@ function attack() {
   text.innerHTML = "The " + monsters[fighting].name + " attacks.";
   text.innerHTML +=
     " You attack it with your " + weapons[currentWeapon].name + ".";
-    /* This line below sets health equal to health minus the return value
+  /* This line below sets health equal to health minus the return value
     of the getMonsterAttackValue function, 
     and passes the level of the monster as an argument */
-    health -= getMonsterAttackValue(monsters[fighting].level); 
-  monsterHealth -=
-    weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
+  health -= getMonsterAttackValue(monsters[fighting].level);
+  if (isMonsterHit()) {
+    monsterHealth -=
+      weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
+  } else {
+    text.innerHTML += " You miss."
+  }
   healthText.innerHTML = health;
   monsterHealthText.innerHTML = monsterHealth;
   if (health <= 0) {
@@ -222,7 +226,7 @@ function attack() {
 }
 
 function getMonsterAttackValue(level) {
-  const hit = (level * 5) - (Math.floor(Math.random() * xp));
+  const hit = level * 5 - Math.floor(Math.random() * xp);
   console.log(hit);
   return hit > 0 ? hit : 0; // returns hit if hit is greater than 0, or returns 0 if it is not
 }
