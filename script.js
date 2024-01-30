@@ -128,12 +128,12 @@ function update(location) {
   text.innerText = location.text;
 }
 
-function goStore() {
-  update(locations[1]);
-}
-
 function goTown() {
   update(locations[0]);
+}
+
+function goStore() {
+  update(locations[1]);
 }
 
 function goCave() {
@@ -146,7 +146,6 @@ function buyHealth() {
     health += 10;
     goldText.innerHTML = gold;
     healthText.innerHTML = health;
-    console.log("working");
   } else {
     text.innerHTML = "You do not have enough money to buy health.";
   }
@@ -161,7 +160,6 @@ function buyWeapon() {
       let newWeapon = weapons[currentWeapon].name;
       text.innerHTML = `You now have a ${newWeapon}.`;
       inventory.push(newWeapon);
-      console.log(inventory);
       text.innerHTML += ` In your inventory you have: ${inventory}.`;
     } else {
       text.innerHTML = "You do not have enough money to buy a weapon.";
@@ -204,8 +202,8 @@ function goFight() {
   update(locations[3]);
   monsterHealth = monsters[fighting].health;
   monsterStats.style.display = "block";
-  monsterName = monsters[fighting].name;
-  monsterHealthText = monsters[fighting].health;
+  monsterName.innerHTML = monsters[fighting].name;
+  monsterHealthText.innerHTML = monsters[fighting].health;
 }
 
 function attack() {
@@ -292,16 +290,16 @@ function pick(guess) {
   while (numbers.length < 10) {
     numbers.push(Math.floor(Math.random() * 11));
   }
-  text.innerHTML = `You picked ${guess}. Here are the random numbers:\n`;
+  text.innerHTML = `You picked ${guess}. Here are the random numbers:<br>`;
   for (let i = 0; i < 10; i++) {
-    text.innerHTML += numbers[i] + "\n";
+    text.innerHTML += numbers[i] + "<br>";
   }
   if (numbers.includes(guess)) {
-    text.innerHTML = "Right! You win 20 gold!";
+    text.innerHTML += "<br>Right! You win 20 gold!";
     gold += 20;
     goldText.innerHTML = gold;
   } else {
-    text.innerHTML += "Wrong! You lose 10 health!";
+    text.innerHTML += "<br>Wrong! You lose 10 health!";
     health -= 10;
     healthText.innerHTML = health;
     if (health <= 0) {
