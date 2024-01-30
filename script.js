@@ -83,6 +83,15 @@ const locations = [
     "button functions": [restart, restart, restart],
     text: "You defeat the dragon! YOU WIN THE GAME! 🎉",
   },
+  {
+    name: "easter egg",
+    "button text": ["2", "8", "Go to town square?"],
+    "button functions": [pickTwo, pickEight, goTown],
+    text: `
+    You find a secret game. Pick a number above. Ten numbers will be randomly chosen between 0 and 10. 
+    If the number you choose matches one of the random numbers, you win!
+    `,
+  },
 ];
 const monsters = [
   {
@@ -210,7 +219,7 @@ function attack() {
     monsterHealth -=
       weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
   } else {
-    text.innerHTML += " You miss."
+    text.innerHTML += " You miss.";
   }
   healthText.innerHTML = health;
   monsterHealthText.innerHTML = monsterHealth;
@@ -224,7 +233,7 @@ function attack() {
     }
   }
   //The player's weapon should only break if inventory.length does not equal (!==) one
-  if (Math.random() <= .1 && inventory.length !== 1) {
+  if (Math.random() <= 0.1 && inventory.length !== 1) {
     text.innerHTML += " Your " + inventory.pop() + " breaks.";
     currentWeapon--;
   }
@@ -238,7 +247,7 @@ function getMonsterAttackValue(level) {
 
 function isMonsterHit() {
   //The player should hit if either Math.random() > .2 or if the player's health is less than 20
-  return Math.random() > .2 || health < 20;
+  return Math.random() > 0.2 || health < 20;
 }
 
 function dodge() {
@@ -271,4 +280,39 @@ function restart() {
   healthText.innerHTML = health;
   goldText.innerHTML = gold;
   goTown();
+}
+
+function easterEgg() {
+  update(locations[7]);
+}
+
+function pick(guess) {
+  const numbers = [];
+  while (numbers.length < 10) {
+    numbers.push(Math.floor(Math.random() * 11));
+  }
+  text.innerHTML = `You picked ${guess}. Here are the random numbers:\n`;
+  for (let i = 0; i < 10; i++) {
+    text.innerHTML += numbers[i] + "\n";
+  }
+  if (numbers.includes(guess)) {
+    text.innerHTML = "Right! You win 20 gold!";
+    gold += 20;
+    goldText.innerHTML = gold;
+  } else {
+    text.innerHTML += "Wrong! You lose 10 health!";
+    health -= 10;
+    healthText.innerHTML = health;
+    if (health <= 0) {
+      lose();
+    }
+  }
+}
+
+function pickTwo() {
+  pick(2);
+}
+
+function pickEight() {
+  pick(8);
 }
