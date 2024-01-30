@@ -223,6 +223,11 @@ function attack() {
       defeatMonster();
     }
   }
+  //The player's weapon should only break if inventory.length does not equal (!==) one
+  if (Math.random() <= .1 && inventory.length !== 1) {
+    text.innerHTML += " Your " + inventory.pop() + " breaks.";
+    currentWeapon--;
+  }
 }
 
 function getMonsterAttackValue(level) {
